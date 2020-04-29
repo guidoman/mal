@@ -1,0 +1,2 @@
+#!/bin/bash
+exec dart $(dirname $0)/${STEP:-stepA_mal}.dart "${@}"
