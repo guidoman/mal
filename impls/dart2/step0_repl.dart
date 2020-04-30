@@ -12,7 +12,7 @@ String PRINT(String x) {
   return x;
 }
 
-String repl(String x) {
+String rep(String x) {
   return PRINT(EVAL(READ(x)));
 }
 
@@ -23,6 +23,6 @@ main() {
     if (input == null) {
       break;
     }
-    stdout.writeln('${repl(input)}');
+    stdout.writeln('${rep(input)}');
   }
 }
