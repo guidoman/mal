@@ -12,9 +12,7 @@ String pr_str(MalType t) {
     for (var t2 in t.elements) {
       out.add(pr_str(t2));
     }
-//    return out.join(' ');
     return '(${out.join(" ")})';
   }
-  assert(false, 'Not implemented');
-  return '';
+  throw Exception('Unsupported Mal type: $t');
 }
