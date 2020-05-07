@@ -1,4 +1,3 @@
-import 'exceptions.dart';
 import 'malregex.dart';
 import 'types.dart';
 
@@ -45,7 +44,7 @@ MalList read_list(Reader reader) {
   while (true) {
     t = reader.peek();
     if (t == null) {
-      throw MalSyntaxError('unbalanced Mal list');
+      throw ('unbalanced Mal list');
     }
     if (t == ')') {
       reader.next();
@@ -60,9 +59,9 @@ MalList read_list(Reader reader) {
 MalType read_atom(Reader reader) {
   // number
   var t = reader.next();
-  int num = int.tryParse(t);
-  if (num != null) {
-    return MalNumber(num);
+  num n = num.tryParse(t);
+  if (n != null) {
+    return MalNumber(n);
   }
   // symbol
   return MalSymbol(t);
@@ -74,7 +73,7 @@ List<String> tokenize(String s) {
   for (Match match in re.allMatches(s)) {
     String token = match.group(1);
     if (token.startsWith('"') && !token.endsWith('"')) {
-      throw MalSyntaxError('unbalanced Mal string: $token');
+      throw ('unbalanced Mal string: $token');
     }
     if (token != '') {
       tokens.add(token);

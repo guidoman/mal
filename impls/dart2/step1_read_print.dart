@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'exceptions.dart';
 import 'printer.dart';
 import 'reader.dart';
 import 'types.dart';
@@ -30,8 +29,8 @@ main() {
     }
     try {
       stdout.writeln('${rep(input)}');
-    } on MalSyntaxError catch (e) {
-      print(e.message);
+    } on Exception catch (e) {
+      print(e);
     }
   }
 }

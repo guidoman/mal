@@ -14,5 +14,5 @@ String pr_str(MalType t) {
     }
     return '(${out.join(" ")})';
   }
-  throw Exception('Unsupported Mal type: $t');
+  throw ('Unsupported Mal type: $t');
 }

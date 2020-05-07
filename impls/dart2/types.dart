@@ -7,7 +7,7 @@ class MalList extends MalType {
 }
 
 class MalNumber extends MalType {
-  int value;
+  num value;
 
   MalNumber(this.value);
 }
