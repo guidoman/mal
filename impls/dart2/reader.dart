@@ -63,7 +63,19 @@ MalType read_atom(Reader reader) {
   if (n != null) {
     return MalNumber(n);
   }
+  // nil
+  if (t == 'nil') {
+    return MalNil();
+  }
+  if (t == 'true') {
+    return MalTrue();
+  }
+  if (t == 'false') {
+    return MalFalse();
+  }
   // symbol
+  // Transform input string
+  t = t.replaceAll(r'\\', '\\').replaceAll(r'\"', '"').replaceAll(r'\n', '\n');
   return MalSymbol(t);
 }
 

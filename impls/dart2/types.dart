@@ -1,3 +1,5 @@
+import 'env.dart';
+
 abstract class MalType {}
 
 class MalList extends MalType {
@@ -16,4 +18,24 @@ class MalSymbol extends MalType {
   String name;
 
   MalSymbol(this.name);
+
+  bool operator ==(other) {
+    return (other is MalSymbol && other.name == name);
+  }
+
+  int get hashCode => name.hashCode;
+}
+
+class MalNil extends MalType {}
+
+class MalTrue extends MalType {}
+
+class MalFalse extends MalType {}
+
+class MalFunction extends MalType {
+  MalList args;
+  MalType definition;
+  Env env;
+
+  MalFunction(this.args, this.definition, this.env);
 }
