@@ -89,13 +89,9 @@ dynamic EVAL(dynamic ast, Env env) {
       }
       // Handle "do"
       if (firstElement is MalSymbol && firstElement.name == 'do') {
-        for (var i = 1; i < ast.elements.length; i++) {
-          var elem = ast.elements[i];
-          var evaluatedElem = EVAL(elem, env);
-          if (i == ast.elements.length - 1) {
-            return evaluatedElem;
-          }
-        }
+        var restList = MalList(ast.elements.sublist(1));
+        var evaluatedList = eval_ast(restList, env);
+        return (evaluatedList as List).last;
       }
       // Handle "if"
       if (firstElement is MalSymbol && firstElement.name == 'if') {
