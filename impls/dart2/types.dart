@@ -33,9 +33,14 @@ class MalTrue extends MalType {}
 class MalFalse extends MalType {}
 
 class MalFunction extends MalType {
-  MalList args;
-  MalType definition;
+  MalList params;
+  MalType ast;
   Env env;
+  Function fn;
 
-  MalFunction(this.args, this.definition, this.env);
+  MalFunction(this.params, this.ast, this.env) {
+    fn = (args) {
+      // TODO ???
+    };
+  }
 }

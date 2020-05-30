@@ -133,8 +133,8 @@ dynamic EVAL(dynamic ast, Env env) {
         // Create new env by binding expressions to arguments inside
         // existing closure environt
         // Note: pretending that Dart doesn't have closures natively
-        var closureEnv = Env.withBinds(fn.env, fn.args.elements, argsList);
-        return EVAL(fn.definition, closureEnv);
+        var closureEnv = Env.withBinds(fn.env, fn.params.elements, argsList);
+        return EVAL(fn.ast, closureEnv);
       } else {
         // build-in function
         return fn(argsList);
