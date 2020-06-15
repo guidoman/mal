@@ -2,84 +2,84 @@ import 'printer.dart';
 import 'types.dart';
 
 Map<MalSymbol, dynamic> ns = {
-  MalSymbol('+'): (List<dynamic> args) {
+  MalSymbol('+'): MalBuiltInFunction((List<dynamic> args) {
     return MalNumber(
         (args[0] as MalNumber).value + (args[1] as MalNumber).value);
-  },
-  MalSymbol('-'): (List<dynamic> args) {
+  }),
+  MalSymbol('-'): MalBuiltInFunction((List<dynamic> args) {
     return MalNumber(
         (args[0] as MalNumber).value - (args[1] as MalNumber).value);
-  },
-  MalSymbol('*'): (List<dynamic> args) {
+  }),
+  MalSymbol('*'): MalBuiltInFunction((List<dynamic> args) {
     return MalNumber(
         (args[0] as MalNumber).value * (args[1] as MalNumber).value);
-  },
-  MalSymbol('/'): (List<dynamic> args) {
+  }),
+  MalSymbol('/'): MalBuiltInFunction((List<dynamic> args) {
     return MalNumber(
         (args[0] as MalNumber).value / (args[1] as MalNumber).value);
-  },
-  MalSymbol('prn'): (List<dynamic> args) {
+  }),
+  MalSymbol('prn'): MalBuiltInFunction((List<dynamic> args) {
     print(pr_str(args[0]));
     return MalNil();
-  },
-  MalSymbol('list'): (List<dynamic> args) {
+  }),
+  MalSymbol('list'): MalBuiltInFunction((List<dynamic> args) {
     var elements = <MalType>[];
     for (var arg in args) {
       elements.add(arg);
     }
     return MalList(elements);
-  },
-  MalSymbol('list?'): (List<dynamic> args) {
+  }),
+  MalSymbol('list?'): MalBuiltInFunction((List<dynamic> args) {
     if (args[0] is MalList) {
       return MalTrue();
     } else {
       return MalFalse();
     }
-  },
-  MalSymbol('empty?'): (List<dynamic> args) {
+  }),
+  MalSymbol('empty?'): MalBuiltInFunction((List<dynamic> args) {
     var list = args[0] as MalList;
     if (list.elements.length == 0) {
       return MalTrue();
     } else {
       return MalFalse();
     }
-  },
-  MalSymbol('count'): (List<dynamic> args) {
+  }),
+  MalSymbol('count'): MalBuiltInFunction((List<dynamic> args) {
     var arg = args[0];
     if (arg is MalList) {
       return MalNumber(arg.elements.length);
     }
     return MalNumber(0);
-  },
-  MalSymbol('='): equals,
-  MalSymbol('<'): (List<dynamic> args) {
+  }),
+  MalSymbol('='): MalBuiltInFunction(equals),
+  MalSymbol('<'): MalBuiltInFunction((List<dynamic> args) {
     if ((args[0] as MalNumber).value < (args[1] as MalNumber).value) {
       return MalTrue();
     } else {
       return MalFalse();
     }
-  },
-  MalSymbol('<='): (List<dynamic> args) {
+  }),
+  MalSymbol('<='): MalBuiltInFunction((List<dynamic> args) {
     if ((args[0] as MalNumber).value <= (args[1] as MalNumber).value) {
       return MalTrue();
     } else {
       return MalFalse();
     }
-  },
-  MalSymbol('>'): (List<dynamic> args) {
+  }),
+  MalSymbol('>'): MalBuiltInFunction((List<dynamic> args) {
     if ((args[0] as MalNumber).value > (args[1] as MalNumber).value) {
       return MalTrue();
     } else {
       return MalFalse();
     }
-  },
-  MalSymbol('>='): (List<dynamic> args) {
+  }),
+  MalSymbol('>='): MalBuiltInFunction((List<dynamic> args) {
     if ((args[0] as MalNumber).value >= (args[1] as MalNumber).value) {
       return MalTrue();
     } else {
       return MalFalse();
     }
-  },
+  }),
 };
 
 MalType _boxBool(bool b) {

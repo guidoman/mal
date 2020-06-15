@@ -44,3 +44,9 @@ class MalFunction extends MalType {
     };
   }
 }
+
+class MalBuiltInFunction extends MalType {
+  Function fn;
+
+  MalBuiltInFunction(this.fn);
+}

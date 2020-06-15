@@ -138,9 +138,11 @@ dynamic EVAL(dynamic ast, Env env) {
             // TCO
             ast = fn.ast;
             env = Env.withBinds(fn.env, fn.params.elements, args);
-          } else {
+          } else if (fn is MalBuiltInFunction) {
             // build-in function
-            return fn(args);
+            return fn.fn(args);
+          } else {
+            throw ('error applying "${fn}"');
           }
         }
       }

@@ -30,7 +30,7 @@ String pr_str(MalType t, {bool print_readably = false}) {
   if (t is MalFalse) {
     return 'false';
   }
-  if (t is MalFunction) {
+  if (t is MalFunction || t is MalBuiltInFunction) {
     return '#<function>';
   }
   throw ('Unsupported Mal type: $t');
